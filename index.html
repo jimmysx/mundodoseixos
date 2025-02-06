@@ -169,5 +169,21 @@
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
     </div>
+    <script>
+        function enviarWhatsApp() {
+            const telefone = '5531980214364';
+            const peca = document.getElementById('peca').value;
+            const marca = document.getElementById('marca').value;
+            const veiculo = document.getElementById('veiculo').value;
+            const versao = document.getElementById('versao').value;
+            const ano = document.getElementById('ano').value;
+            const chassi = document.getElementById('chassi').value;
+            
+            const mensagem = `Olá, gostaria de solicitar um orçamento.\n\nPeça: ${peca}\nMarca: ${marca}\nVeículo: ${veiculo}\nVersão: ${versao}\nAno: ${ano}\nChassi: ${chassi}`;
+            
+            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
