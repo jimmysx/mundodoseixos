@@ -30,6 +30,31 @@
             color: black;
             font-weight: bold;
             cursor: pointer;
+            font-size: 14px;
+        }
+        .contact-dropdown {
+            display: inline-block;
+            position: relative;
+        }
+        .contact-dropdown a {
+            display: flex;
+            align-items: center;
+        }
+        .contact-dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 25px;
+            left: 0;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1;
+            border-radius: 5px;
+            text-align: left;
+            width: max-content;
+        }
+        .contact-dropdown:hover .dropdown-content {
+            display: block;
         }
         .banner-phone {
             width: 100%;
@@ -75,11 +100,6 @@
             padding: 10px;
             margin-top: 20px;
         }
-        .contact-info {
-            display: none;
-            text-align: center;
-            margin-top: 10px;
-        }
         h2 {
             font-family: 'Roboto', sans-serif;
         }
@@ -90,7 +110,13 @@
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
         <div class="nav">
-            <a href="#" onclick="showContactInfo()">Contato</a>
+            <div class="contact-dropdown">
+                <a href="#">CONTATO &#9662;</a>
+                <div class="dropdown-content">
+                    <p>Email: financeiromundodoseixos@gmail.com</p>
+                    <p>Telefone: (31) 98021-4364</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container">
@@ -132,11 +158,6 @@
         CNPJ: 55.061.500/0001-25
     </div>
 
-    <div class="contact-info" id="contact-info">
-        <p>Email: financeiromundodoseixos@gmail.com</p>
-        <p>Telefone: (31) 98021-4364</p>
-    </div>
-
     <script>
         function enviarWhatsApp() {
             const peca = document.getElementById('peca').value;
@@ -159,11 +180,6 @@ Chassi: ${chassi}`;
             const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
             
             window.open(url, '_blank');
-        }
-
-        function showContactInfo() {
-            const contactInfo = document.getElementById('contact-info');
-            contactInfo.style.display = contactInfo.style.display === 'none' || contactInfo.style.display === '' ? 'block' : 'none';
         }
     </script>
 </body>
