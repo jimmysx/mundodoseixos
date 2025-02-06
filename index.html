@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Peças Automotivas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Questrial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            transition: background 0.3s, color 0.3s;
-            opacity: 0;
             animation: fadeIn 1s ease-in-out forwards;
         }
         @keyframes fadeIn {
@@ -23,46 +22,19 @@
             color: black;
             padding: 20px;
             text-align: center;
-            position: relative;
         }
         .logo {
             max-width: 150px;
         }
-        .nav {
-            margin-top: 10px;
-        }
         .nav a {
-            margin: 0 10px;
+            margin: 0 15px;
             text-decoration: none;
             color: black;
             font-weight: bold;
-            cursor: pointer;
             font-size: 14px;
         }
         .nav a:hover {
             color: #007bff;
-        }
-        .contact-dropdown {
-            display: inline-block;
-            position: relative;
-        }
-        .contact-dropdown a::after {
-            content: ' ▼';
-            font-size: 12px;
-        }
-        .contact-dropdown .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            z-index: 1;
-            border-radius: 5px;
-            width: max-content;
-            text-align: left;
-        }
-        .contact-dropdown:hover .dropdown-content {
-            display: block;
         }
         .container {
             max-width: 600px;
@@ -71,27 +43,18 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-        .container:hover {
-            transform: scale(1.02);
         }
         label {
             display: block;
-            text-align: center;
-            margin: 20px 0 10px;
+            margin-top: 10px;
+            font-weight: bold;
         }
         select, input {
-            display: block;
             width: 100%;
             padding: 10px;
             border: 1px solid #007bff;
-            border-radius: 15px;
-            margin: 0 auto;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        select:focus, input:focus {
-            box-shadow: 0px 0px 10px rgba(0,123,255,0.5);
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
         button {
             background: #007bff;
@@ -102,10 +65,7 @@
             font-size: 18px;
             font-weight: bold;
             border-radius: 25px;
-            margin-top: 20px;
-            text-align: center;
             width: 100%;
-            transition: background 0.3s ease;
         }
         button:hover {
             background: #0056b3;
@@ -117,26 +77,14 @@
             padding: 10px;
             margin-top: 20px;
         }
-        .atendimento {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
         <div class="nav">
             <a href="sobre-nos.html">SOBRE NÓS</a>
-            <div class="contact-dropdown">
-                <a href="#">CONTATO</a>
-                <div class="dropdown-content">
-                    <p>Email: financeiromundodoseixos@gmail.com</p>
-                    <p>Telefone: (31) 98021-4364</p>
-                </div>
-            </div>
+            <a href="#" onclick="abrirContato()">CONTATO</a>
         </div>
     </div>
     <div class="container">
@@ -149,10 +97,6 @@
             <option value="Fiat">Fiat</option>
             <option value="Chevrolet">Chevrolet</option>
             <option value="Ford">Ford</option>
-            <option value="Hyundai">Hyundai</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Honda">Honda</option>
-            <option value="Renault">Renault</option>
         </select>
         <label for="veiculo">Veículo:</label>
         <input type="text" id="veiculo" placeholder="Digite o modelo do veículo">
@@ -161,10 +105,9 @@
         <label for="ano">Ano:</label>
         <input type="text" id="ano" placeholder="Digite o ano do veículo">
         <label for="chassi">Chassi:</label>
-        <input type="text" id="chassi" placeholder="Digite o chassi do veículo">
+        <input type="text" id="chassi" placeholder="Digite o número completo do chassi">
         <button onclick="enviarWhatsApp()">FAZER ORÇAMENTO</button>
     </div>
-    <div class="atendimento">Horário de Atendimento: 08:00 - 18:00</div>
     <div class="footer">
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
@@ -172,17 +115,25 @@
     <script>
         function enviarWhatsApp() {
             const telefone = '5531980214364';
-            const peca = document.getElementById('peca').value;
+            const peca = document.getElementById('peca').value.trim();
             const marca = document.getElementById('marca').value;
-            const veiculo = document.getElementById('veiculo').value;
-            const versao = document.getElementById('versao').value;
-            const ano = document.getElementById('ano').value;
-            const chassi = document.getElementById('chassi').value;
+            const veiculo = document.getElementById('veiculo').value.trim();
+            const versao = document.getElementById('versao').value.trim();
+            const ano = document.getElementById('ano').value.trim();
+            const chassi = document.getElementById('chassi').value.trim();
+            
+            if (!peca || !veiculo || !versao || !ano || !chassi) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
             
             const mensagem = `Olá, gostaria de solicitar um orçamento.\n\nPeça: ${peca}\nMarca: ${marca}\nVeículo: ${veiculo}\nVersão: ${versao}\nAno: ${ano}\nChassi: ${chassi}`;
-            
             const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, '_blank');
+        }
+
+        function abrirContato() {
+            alert('Entre em contato pelo WhatsApp: (31) 98021-4364');
         }
     </script>
 </body>
