@@ -69,23 +69,46 @@
             margin: 20px auto;
             background: white;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease-in-out;
         }
         .container:hover {
             transform: scale(1.02);
         }
-        .testimonials {
+        label {
+            display: block;
             text-align: center;
-            padding: 20px;
-            overflow: hidden;
-            white-space: nowrap;
-            animation: slide 10s linear infinite;
+            margin: 20px 0 10px;
         }
-        @keyframes slide {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+        select, input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #007bff;
+            border-radius: 15px;
+            margin: 0 auto;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        select:focus, input:focus {
+            box-shadow: 0px 0px 10px rgba(0,123,255,0.5);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
         }
         .footer {
             background: white;
@@ -141,31 +164,10 @@
         <input type="text" id="chassi" placeholder="Digite o chassi do veículo">
         <button onclick="enviarWhatsApp()">FAZER ORÇAMENTO</button>
     </div>
-    <div class="testimonials">
-        <h3>O que nossos clientes dizem</h3>
-        <p>⭐⭐⭐⭐⭐ - Atendimento excelente! - João Silva</p>
-        <p>⭐⭐⭐⭐⭐ - Peças de qualidade! - Maria Oliveira</p>
-    </div>
     <div class="atendimento">Horário de Atendimento: 08:00 - 18:00</div>
     <div class="footer">
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
     </div>
-    <script>
-        function enviarWhatsApp() {
-            const telefone = '5531980214364';
-            const peca = document.getElementById('peca').value;
-            const marca = document.getElementById('marca').value;
-            const veiculo = document.getElementById('veiculo').value;
-            const versao = document.getElementById('versao').value;
-            const ano = document.getElementById('ano').value;
-            const chassi = document.getElementById('chassi').value;
-            
-            const mensagem = `Olá, gostaria de solicitar um orçamento.\n\nPeça: ${peca}\nMarca: ${marca}\nVeículo: ${veiculo}\nVersão: ${versao}\nAno: ${ano}\nChassi: ${chassi}`;
-            
-            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
-        }
-    </script>
 </body>
 </html>
