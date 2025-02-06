@@ -16,21 +16,27 @@
             color: black;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
         .logo {
             max-width: 150px;
+        }
+        .nav {
+            margin-top: 10px;
+        }
+        .nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
         }
         .banner-phone {
             width: 100%;
             max-width: 430px;
             height: 430px;
             object-fit: cover;
-            display: none;
-        }
-        @media (max-width: 768px) {
-            .banner-phone {
-                display: block;
-            }
+            margin: 20px 0;
         }
         .container {
             max-width: 600px;
@@ -67,17 +73,22 @@
             color: black;
             text-align: center;
             padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            margin-top: 20px;
+        }
+        .contact-info {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
+        <div class="nav">
+            <a onclick="showContactInfo()">Contato</a>
+        </div>
     </div>
-    <img src="banner-phone.jpg" alt="Banner para Usuários de Telefone" class="banner-phone">
     <div class="container">
         <h2>Selecione as Informações da Peça</h2>
         <label for="peca">Peça:</label>
@@ -110,9 +121,16 @@
         <button onclick="enviarWhatsApp()">Fazer Orçamento</button>
     </div>
 
+    <img src="banner-phone.jpg" alt="Banner para Usuários de Telefone" class="banner-phone">
+
     <div class="footer">
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
+    </div>
+
+    <div class="contact-info" id="contact-info">
+        <p>Email: financeiromundodoseixos@gmail.com</p>
+        <p>Telefone: (31) 98021-4364</p>
     </div>
 
     <script>
@@ -137,6 +155,11 @@ Chassi: ${chassi}`;
             const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
             
             window.open(url, '_blank');
+        }
+
+        function showContactInfo() {
+            const contactInfo = document.getElementById('contact-info');
+            contactInfo.style.display = contactInfo.style.display === 'none' || contactInfo.style.display === '' ? 'block' : 'none';
         }
     </script>
 </body>
