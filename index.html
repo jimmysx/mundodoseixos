@@ -6,7 +6,7 @@
     <title>Loja de Peças Automotivas</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -80,13 +80,17 @@
             text-align: center;
             margin-top: 10px;
         }
+        h2 {
+            font-family: 'Roboto', sans-serif;
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
         <div class="nav">
-            <a onclick="showContactInfo()">Contato</a>
+            <a href="#" onclick="showContactInfo()">Contato</a>
         </div>
     </div>
     <div class="container">
@@ -95,7 +99,7 @@
         <input type="text" id="peca" placeholder="Digite o nome da peça desejada">
 
         <label for="marca">Marca:</label>
-        <select id="marca" multiple>
+        <select id="marca">
             <option value="Volkswagen">Volkswagen</option>
             <option value="Fiat">Fiat</option>
             <option value="Chevrolet">Chevrolet</option>
@@ -136,7 +140,7 @@
     <script>
         function enviarWhatsApp() {
             const peca = document.getElementById('peca').value;
-            const marca = Array.from(document.getElementById('marca').selectedOptions).map(option => option.value).join(', ');
+            const marca = document.getElementById('marca').value;
             const veiculo = document.getElementById('veiculo').value;
             const versao = document.getElementById('versao').value;
             const ano = document.getElementById('ano').value;
@@ -145,7 +149,7 @@
             const mensagem = `Olá, gostaria de solicitar um orçamento.
 
 Peça: ${peca}
-Marca(s): ${marca}
+Marca: ${marca}
 Veículo: ${veiculo}
 Versão: ${versao}
 Ano: ${ano}
