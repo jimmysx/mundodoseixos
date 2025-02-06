@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Peças Automotivas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .banner {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        label, select, input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" alt="Logo da Empresa" class="logo">
+    </div>
+    <img src="banner.jpg" alt="Banner da Loja" class="banner">
+    <div class="container">
+        <h2>Selecione as Informações da Peça</h2>
+        <label for="veiculo">Veículo:</label>
+        <input type="text" id="veiculo" placeholder="Digite o modelo do veículo">
+        
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" placeholder="Digite a marca do veículo">
+        
+        <label for="versao">Versão:</label>
+        <input type="text" id="versao" placeholder="Digite a versão do veículo">
+        
+        <label for="ano">Ano:</label>
+        <input type="text" id="ano" placeholder="Digite o ano do veículo">
+        
+        <label for="chassi">Chassi:</label>
+        <input type="text" id="chassi" placeholder="Digite o chassi do veículo">
+        
+        <label for="peca">Peça:</label>
+        <input type="text" id="peca" placeholder="Digite o nome da peça desejada">
+        
+        <button onclick="enviarWhatsApp()">Comprar</button>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.
+    </div>
+
+    <script>
+        function enviarWhatsApp() {
+            const veiculo = document.getElementById('veiculo').value;
+            const marca = document.getElementById('marca').value;
+            const versao = document.getElementById('versao').value;
+            const ano = document.getElementById('ano').value;
+            const chassi = document.getElementById('chassi').value;
+            const peca = document.getElementById('peca').value;
+            
+            const mensagem = `Olá, gostaria de comprar uma peça.\n\nVeículo: ${veiculo}\nMarca: ${marca}\nVersão: ${versao}\nAno: ${ano}\nChassi: ${chassi}\nPeça: ${peca}`;
+            
+            const telefone = '5531980214364'; // Coloque seu número de WhatsApp no formato internacional, ex: 5531980214364
+            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+            
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
