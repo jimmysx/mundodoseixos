@@ -115,25 +115,8 @@
     <script>
         function enviarWhatsApp() {
             const telefone = '5531980214364';
-            const peca = document.getElementById('peca').value.trim();
-            const marca = document.getElementById('marca').value;
-            const veiculo = document.getElementById('veiculo').value.trim();
-            const versao = document.getElementById('versao').value.trim();
-            const ano = document.getElementById('ano').value.trim();
-            const chassi = document.getElementById('chassi').value.trim();
-            
-            if (!peca || !veiculo || !versao || !ano || !chassi) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-            
-            const mensagem = `Olá, gostaria de solicitar um orçamento.\n\nPeça: ${peca}\nMarca: ${marca}\nVeículo: ${veiculo}\nVersão: ${versao}\nAno: ${ano}\nChassi: ${chassi}`;
-            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
-        }
-
-        function abrirContato() {
-            alert('Entre em contato pelo WhatsApp: (31) 98021-4364');
+            const email = 'financeiromundodoseixos@gmail.com';
+            alert(`Entre em contato pelo WhatsApp: (31) 98021-4364\nEmail: ${email}`);
         }
     </script>
 </body>
