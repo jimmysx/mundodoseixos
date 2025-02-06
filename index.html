@@ -22,19 +22,39 @@
             color: black;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
         .logo {
             max-width: 150px;
         }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
         .nav a {
-            margin: 0 15px;
             text-decoration: none;
             color: black;
             font-weight: bold;
             font-size: 14px;
+            cursor: pointer;
         }
         .nav a:hover {
             color: #007bff;
+        }
+        .contact-info {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 5px;
+            right: 10px;
+            top: 60px;
+            text-align: left;
+        }
+        .show {
+            display: block;
         }
         .container {
             max-width: 600px;
@@ -77,14 +97,23 @@
             padding: 10px;
             margin-top: 20px;
         }
+        .about {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
         <div class="nav">
-            <a href="sobre-nos.html">SOBRE NÓS</a>
-            <a href="#" onclick="abrirContato()">CONTATO</a>
+            <a href="#" onclick="toggleContato()">CONTATO ▼</a>
+        </div>
+        <div id="contact-info" class="contact-info">
+            <p><strong>WhatsApp:</strong> (31) 98021-4364</p>
+            <p><strong>Email:</strong> financeiromundodoseixos@gmail.com</p>
         </div>
     </div>
     <div class="container">
@@ -108,15 +137,18 @@
         <input type="text" id="chassi" placeholder="Digite o número completo do chassi">
         <button onclick="enviarWhatsApp()">FAZER ORÇAMENTO</button>
     </div>
+    <div class="about">
+        <h3>Sobre Nós</h3>
+        <p>Somos uma loja especializada em peças automotivas, oferecendo produtos de qualidade para diversos modelos de veículos. Nosso compromisso é garantir a melhor experiência e satisfação dos nossos clientes.</p>
+    </div>
     <div class="footer">
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
     </div>
     <script>
-        function enviarWhatsApp() {
-            const telefone = '5531980214364';
-            const email = 'financeiromundodoseixos@gmail.com';
-            alert(`Entre em contato pelo WhatsApp: (31) 98021-4364\nEmail: ${email}`);
+        function toggleContato() {
+            const contactInfo = document.getElementById('contact-info');
+            contactInfo.classList.toggle('show');
         }
     </script>
 </body>
