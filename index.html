@@ -20,10 +20,17 @@
         .logo {
             max-width: 150px;
         }
-        .banner {
+        .banner-phone {
             width: 100%;
-            height: 520px;
+            max-width: 430px;
+            height: 430px;
             object-fit: cover;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .banner-phone {
+                display: block;
+            }
         }
         .container {
             max-width: 600px;
@@ -38,13 +45,22 @@
             width: 100%;
             margin: 10px 0;
         }
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
         button {
-            background: #28a745;
+            background: #007bff;
             color: white;
             border: none;
             padding: 10px;
             cursor: pointer;
             font-size: 16px;
+            border-radius: 20px;
+        }
+        button:hover {
+            background: #0056b3;
         }
         .footer {
             background: white;
@@ -61,46 +77,63 @@
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
     </div>
-    <img src="banner.jpg" alt="Banner da Loja" class="banner">
+    <img src="banner-phone.jpg" alt="Banner para Usuários de Telefone" class="banner-phone">
     <div class="container">
         <h2>Selecione as Informações da Peça</h2>
-        <label for="veiculo">Veículo:</label>
-        <input type="text" id="veiculo" placeholder="Digite o modelo do veículo">
-        
-        <label for="marca">Marca:</label>
-        <input type="text" id="marca" placeholder="Digite a marca do veículo">
-        
-        <label for="versao">Versão:</label>
-        <input type="text" id="versao" placeholder="Digite a versão do veículo">
-        
-        <label for="ano">Ano:</label>
-        <input type="text" id="ano" placeholder="Digite o ano do veículo">
-        
-        <label for="chassi">Chassi:</label>
-        <input type="text" id="chassi" placeholder="Digite o chassi do veículo">
-        
         <label for="peca">Peça:</label>
         <input type="text" id="peca" placeholder="Digite o nome da peça desejada">
-        
-        <button onclick="enviarWhatsApp()">Comprar</button>
+
+        <label for="marca">Marca:</label>
+        <select id="marca" multiple>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Ford">Ford</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Renault">Renault</option>
+        </select>
+
+        <label for="veiculo">Veículo:</label>
+        <input type="text" id="veiculo" placeholder="Digite o modelo do veículo">
+
+        <label for="versao">Versão:</label>
+        <input type="text" id="versao" placeholder="Digite a versão do veículo">
+
+        <label for="ano">Ano:</label>
+        <input type="text" id="ano" placeholder="Digite o ano do veículo">
+
+        <label for="chassi">Chassi:</label>
+        <input type="text" id="chassi" placeholder="Digite o chassi do veículo">
+
+        <button onclick="enviarWhatsApp()">Fazer Orçamento</button>
     </div>
 
     <div class="footer">
-        &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.
+        &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
+        CNPJ: 55.061.500/0001-25
     </div>
 
     <script>
         function enviarWhatsApp() {
+            const peca = document.getElementById('peca').value;
+            const marca = Array.from(document.getElementById('marca').selectedOptions).map(option => option.value).join(', ');
             const veiculo = document.getElementById('veiculo').value;
-            const marca = document.getElementById('marca').value;
             const versao = document.getElementById('versao').value;
             const ano = document.getElementById('ano').value;
             const chassi = document.getElementById('chassi').value;
-            const peca = document.getElementById('peca').value;
             
-            const mensagem = `Olá, gostaria de comprar uma peça.\n\nVeículo: ${veiculo}\nMarca: ${marca}\nVersão: ${versao}\nAno: ${ano}\nChassi: ${chassi}\nPeça: ${peca}`;
+            const mensagem = `Olá, gostaria de solicitar um orçamento.
+
+Peça: ${peca}
+Marca(s): ${marca}
+Veículo: ${veiculo}
+Versão: ${versao}
+Ano: ${ano}
+Chassi: ${chassi}`;
             
-            const telefone = '5531980214364'; // Coloque seu número de WhatsApp no formato internacional, ex: 5521999999999
+            const telefone = '5531980214364';
             const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
             
             window.open(url, '_blank');
