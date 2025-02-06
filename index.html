@@ -33,37 +33,6 @@
             cursor: pointer;
             font-size: 14px;
         }
-        .contact-dropdown {
-            display: inline-block;
-            position: relative;
-        }
-        .contact-dropdown a {
-            display: flex;
-            align-items: center;
-        }
-        .contact-dropdown .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 25px;
-            left: 0;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            z-index: 1;
-            border-radius: 5px;
-            text-align: left;
-            width: max-content;
-        }
-        .contact-dropdown:hover .dropdown-content {
-            display: block;
-        }
-        .banner-phone {
-            width: 100%;
-            max-width: 430px;
-            height: 430px;
-            object-fit: cover;
-            margin: 20px 0;
-        }
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -119,15 +88,6 @@
 <body>
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
-        <div class="nav">
-            <div class="contact-dropdown">
-                <a href="#">CONTATO &#9662;</a>
-                <div class="dropdown-content">
-                    <p>Email: financeiromundodoseixos@gmail.com</p>
-                    <p>Telefone: (31) 98021-4364</p>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="container">
         <h2>Selecione as Informações da Peça</h2>
@@ -168,7 +128,15 @@
     <script>
         function enviarWhatsApp() {
             const telefone = '5531980214364';
-            const mensagem = `Olá, gostaria de solicitar um orçamento.`;
+            const peca = document.getElementById('peca').value;
+            const marca = document.getElementById('marca').value;
+            const veiculo = document.getElementById('veiculo').value;
+            const versao = document.getElementById('versao').value;
+            const ano = document.getElementById('ano').value;
+            const chassi = document.getElementById('chassi').value;
+            
+            const mensagem = `Olá, gostaria de solicitar um orçamento.\n\nPeça: ${peca}\nMarca: ${marca}\nVeículo: ${veiculo}\nVersão: ${versao}\nAno: ${ano}\nChassi: ${chassi}`;
+            
             const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, '_blank');
         }
