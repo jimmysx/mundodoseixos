@@ -33,6 +33,9 @@
             cursor: pointer;
             font-size: 14px;
         }
+        .nav a:hover {
+            color: #007bff;
+        }
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -40,6 +43,10 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.02);
         }
         label {
             display: block;
@@ -53,6 +60,10 @@
             border: 1px solid #007bff;
             border-radius: 10px;
             margin: 0 auto;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        select:focus, input:focus {
+            box-shadow: 0px 0px 10px rgba(0,123,255,0.5);
         }
         button {
             background: #007bff;
@@ -82,18 +93,48 @@
             font-family: 'Questrial', sans-serif;
             text-align: center;
         }
+        .atendimento {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .testimonials {
+            text-align: center;
+            padding: 20px;
+        }
+        .testimonials p {
+            animation: fadein 3s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .sobre-nos {
+            display: none;
+            text-align: center;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
+        <div class="nav">
+            <a href="#" onclick="toggleSobreNos()">SOBRE NÓS</a>
+            <a href="#">CONTATO</a>
+        </div>
     </div>
+    <div class="atendimento">Horário de Atendimento: 08:00 - 18:00</div>
     <div class="container">
         <h2>Selecione as Informações da Peça</h2>
         <label for="peca">Peça:</label>
         <input type="text" id="peca" placeholder="Digite o nome da peça desejada">
-
         <label for="marca">Marca:</label>
         <select id="marca">
             <option value="Volkswagen">Volkswagen</option>
@@ -105,22 +146,29 @@
             <option value="Honda">Honda</option>
             <option value="Renault">Renault</option>
         </select>
-
         <label for="veiculo">Veículo:</label>
         <input type="text" id="veiculo" placeholder="Digite o modelo do veículo">
-
         <label for="versao">Versão:</label>
         <input type="text" id="versao" placeholder="Digite a versão do veículo">
-
         <label for="ano">Ano:</label>
         <input type="text" id="ano" placeholder="Digite o ano do veículo">
-
         <label for="chassi">Chassi:</label>
         <input type="text" id="chassi" placeholder="Digite o chassi do veículo">
-
         <button onclick="enviarWhatsApp()">FAZER ORÇAMENTO</button>
     </div>
-
+    <div class="testimonials">
+        <h3>O que nossos clientes dizem</h3>
+        <p>⭐⭐⭐⭐⭐ - Atendimento excelente! - João Silva</p>
+        <p>⭐⭐⭐⭐⭐ - Peças de qualidade! - Maria Oliveira</p>
+    </div>
+    <div class="sobre-nos" id="sobre-nos">
+        <h3>Sobre Nós</h3>
+        <p>Bem-vindo à nossa loja de peças automotivas! Somos uma empresa especializada na venda de peças para diversos modelos e marcas de veículos, sempre priorizando a qualidade e a satisfação dos nossos clientes.</p>
+        <p>Nosso diferencial está no atendimento direto e personalizado via WhatsApp, garantindo que você receba um suporte rápido e eficiente na busca pela peça certa para o seu veículo. Entendemos que cada carro tem suas particularidades, e por isso, nossa equipe está preparada para te auxiliar a encontrar exatamente o que você precisa.</p>
+        <p>Trabalhamos apenas com peças de procedência garantida, oferecendo segurança e confiabilidade em todas as compras. Nosso compromisso é proporcionar aos nossos clientes uma experiência de compra simples, segura e sem complicações.</p>
+        <p>Além disso, temos um processo ágil de solicitação de orçamento. Basta preencher as informações sobre o seu veículo e a peça desejada, e nós entraremos em contato rapidamente para oferecer as melhores opções disponíveis.</p>
+        <p>Nosso horário de atendimento é das 08:00 às 18:00, e estamos sempre prontos para atender suas dúvidas e necessidades. Conte conosco para garantir as melhores peças para o seu veículo!</p>
+    </div>
     <div class="footer">
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
@@ -139,6 +187,10 @@
             
             const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, '_blank');
+        }
+        function toggleSobreNos() {
+            const sobreNos = document.getElementById('sobre-nos');
+            sobreNos.style.display = sobreNos.style.display === 'none' || sobreNos.style.display === '' ? 'block' : 'none';
         }
     </script>
 </body>
