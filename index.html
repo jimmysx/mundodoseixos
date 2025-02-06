@@ -113,24 +113,6 @@
             font-family: 'Questrial', sans-serif;
             text-align: center;
         }
-        .testimonials {
-            text-align: center;
-            padding: 20px;
-        }
-        .map {
-            text-align: center;
-            margin: 20px auto;
-        }
-        .dark-mode-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            background: black;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
 </head>
@@ -146,30 +128,49 @@
                 </div>
             </div>
         </div>
-        <div class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</div>
     </div>
     <div class="container">
         <h2>Selecione as Informações da Peça</h2>
         <label for="peca">Peça:</label>
         <input type="text" id="peca" placeholder="Digite o nome da peça desejada">
+
+        <label for="marca">Marca:</label>
+        <select id="marca">
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Ford">Ford</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Renault">Renault</option>
+        </select>
+
+        <label for="veiculo">Veículo:</label>
+        <input type="text" id="veiculo" placeholder="Digite o modelo do veículo">
+
+        <label for="versao">Versão:</label>
+        <input type="text" id="versao" placeholder="Digite a versão do veículo">
+
+        <label for="ano">Ano:</label>
+        <input type="text" id="ano" placeholder="Digite o ano do veículo">
+
+        <label for="chassi">Chassi:</label>
+        <input type="text" id="chassi" placeholder="Digite o chassi do veículo">
+
         <button onclick="enviarWhatsApp()">FAZER ORÇAMENTO</button>
     </div>
-    <div class="testimonials">
-        <h3>O que nossos clientes dizem</h3>
-        <p>⭐⭐⭐⭐⭐ - Atendimento excelente! - João Silva</p>
-        <p>⭐⭐⭐⭐⭐ - Peças de qualidade! - Maria Oliveira</p>
-    </div>
-    
+
     <div class="footer">
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
     </div>
     <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
         function enviarWhatsApp() {
-            alert('Orçamento enviado!');
+            const telefone = '5531980214364';
+            const mensagem = `Olá, gostaria de solicitar um orçamento.`;
+            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
