@@ -11,6 +11,12 @@
             padding: 0;
             background-color: #f4f4f4;
             transition: background 0.3s, color 0.3s;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         .header {
             background: white;
@@ -36,6 +42,28 @@
         .nav a:hover {
             color: #007bff;
         }
+        .contact-dropdown {
+            display: inline-block;
+            position: relative;
+        }
+        .contact-dropdown a::after {
+            content: ' ▼';
+            font-size: 12px;
+        }
+        .contact-dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1;
+            border-radius: 5px;
+            width: max-content;
+            text-align: left;
+        }
+        .contact-dropdown:hover .dropdown-content {
+            display: block;
+        }
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -48,39 +76,16 @@
         .container:hover {
             transform: scale(1.02);
         }
-        label {
-            display: block;
+        .testimonials {
             text-align: center;
-            margin: 20px 0 10px;
+            padding: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: slide 10s linear infinite;
         }
-        select, input {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #007bff;
-            border-radius: 10px;
-            margin: 0 auto;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        select:focus, input:focus {
-            box-shadow: 0px 0px 10px rgba(0,123,255,0.5);
-        }
-        button {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 20px;
-            margin-top: 20px;
-            text-align: center;
-            width: 100%;
-            transition: background 0.3s ease;
-        }
-        button:hover {
-            background: #0056b3;
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
         .footer {
             background: white;
@@ -89,35 +94,10 @@
             padding: 10px;
             margin-top: 20px;
         }
-        h2 {
-            font-family: 'Questrial', sans-serif;
-            text-align: center;
-        }
         .atendimento {
             text-align: center;
             font-weight: bold;
             margin-bottom: 10px;
-        }
-        .testimonials {
-            text-align: center;
-            padding: 20px;
-        }
-        .testimonials p {
-            animation: fadein 3s;
-        }
-        @keyframes fadein {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .sobre-nos {
-            display: none;
-            text-align: center;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
@@ -126,11 +106,16 @@
     <div class="header">
         <img src="logo.png" alt="Logo da Empresa" class="logo">
         <div class="nav">
-            <a href="#" onclick="toggleSobreNos()">SOBRE NÓS</a>
-            <a href="#">CONTATO</a>
+            <a href="sobre-nos.html">SOBRE NÓS</a>
+            <div class="contact-dropdown">
+                <a href="#">CONTATO</a>
+                <div class="dropdown-content">
+                    <p>Email: financeiromundodoseixos@gmail.com</p>
+                    <p>Telefone: (31) 98021-4364</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="atendimento">Horário de Atendimento: 08:00 - 18:00</div>
     <div class="container">
         <h2>Selecione as Informações da Peça</h2>
         <label for="peca">Peça:</label>
@@ -161,14 +146,7 @@
         <p>⭐⭐⭐⭐⭐ - Atendimento excelente! - João Silva</p>
         <p>⭐⭐⭐⭐⭐ - Peças de qualidade! - Maria Oliveira</p>
     </div>
-    <div class="sobre-nos" id="sobre-nos">
-        <h3>Sobre Nós</h3>
-        <p>Bem-vindo à nossa loja de peças automotivas! Somos uma empresa especializada na venda de peças para diversos modelos e marcas de veículos, sempre priorizando a qualidade e a satisfação dos nossos clientes.</p>
-        <p>Nosso diferencial está no atendimento direto e personalizado via WhatsApp, garantindo que você receba um suporte rápido e eficiente na busca pela peça certa para o seu veículo. Entendemos que cada carro tem suas particularidades, e por isso, nossa equipe está preparada para te auxiliar a encontrar exatamente o que você precisa.</p>
-        <p>Trabalhamos apenas com peças de procedência garantida, oferecendo segurança e confiabilidade em todas as compras. Nosso compromisso é proporcionar aos nossos clientes uma experiência de compra simples, segura e sem complicações.</p>
-        <p>Além disso, temos um processo ágil de solicitação de orçamento. Basta preencher as informações sobre o seu veículo e a peça desejada, e nós entraremos em contato rapidamente para oferecer as melhores opções disponíveis.</p>
-        <p>Nosso horário de atendimento é das 08:00 às 18:00, e estamos sempre prontos para atender suas dúvidas e necessidades. Conte conosco para garantir as melhores peças para o seu veículo!</p>
-    </div>
+    <div class="atendimento">Horário de Atendimento: 08:00 - 18:00</div>
     <div class="footer">
         &copy; 2025 Loja de Peças Automotivas. Todos os direitos reservados.<br>
         CNPJ: 55.061.500/0001-25
@@ -187,10 +165,6 @@
             
             const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, '_blank');
-        }
-        function toggleSobreNos() {
-            const sobreNos = document.getElementById('sobre-nos');
-            sobreNos.style.display = sobreNos.style.display === 'none' || sobreNos.style.display === '' ? 'block' : 'none';
         }
     </script>
 </body>
